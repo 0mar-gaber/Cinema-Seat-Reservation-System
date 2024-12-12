@@ -1,0 +1,7 @@
+Ticket ID: TICKET-5e73e6ab-530e-4b12-89ce-c34bf4883303
+Name: ca
+Time: 12 PM
+Reserved Seats:
+Row: 1, Column: 8
+Row: 1, Column: 9
+
