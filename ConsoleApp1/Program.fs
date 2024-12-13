@@ -1,1 +1,15 @@
+open System
+open System.Drawing
+open System.Windows.Forms
+open System.IO
+open System.Diagnostics
+
+
+
+let readBookingFromFile time =
+    let filePath = sprintf "D:\\f#\\ConsoleApp1\\ConsoleApp1\\ticket details\\%s_bookingDetails.txt" time
+    if File.Exists(filePath) then
+        File.ReadAllLines(filePath)
+    else
+        [||]  // Return an empty array if the file does not exist
 
