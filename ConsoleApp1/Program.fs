@@ -15,3 +15,9 @@ let readBookingFromFile time =
     else
         [||]  // Return an empty array if the file does not exist
 
+
+let saveBookingToFile name time selectedSeats ticketID =
+    let filePath = sprintf "D:\\f#\\ConsoleApp1\\ConsoleApp1\\ticket details\\%s_bookingDetails.txt" time
+    let details = sprintf "Ticket ID: %s\nName: %s\nTime: %s\nReserved Seats:\n%s\n\n" ticketID name time selectedSeats
+    File.AppendAllText(filePath, details)
+
