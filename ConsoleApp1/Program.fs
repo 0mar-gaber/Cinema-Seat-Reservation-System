@@ -4,7 +4,9 @@ open System.Windows.Forms
 open System.IO
 open System.Diagnostics
 
-
+// Function to generate a unique ID for each ticket
+let generateTicketID () =
+    "TICKET-" + (Guid.NewGuid().ToString())
 
 let readBookingFromFile time =
     let filePath = sprintf "D:\\f#\\ConsoleApp1\\ConsoleApp1\\ticket details\\%s_bookingDetails.txt" time
