@@ -4,7 +4,7 @@ open System.Windows.Forms
 open System.IO
 open System.Diagnostics
 
-// Function to generate a unique ID for each ticket
+
 let generateTicketID () =
     "TICKET-" + (Guid.NewGuid().ToString())
 
