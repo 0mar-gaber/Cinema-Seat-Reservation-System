@@ -70,7 +70,7 @@ let createForm () =
 
     let updateSeats (time: string) =
         let bookingDetails = readBookingFromFile time
-        tableLayoutPanel1.Controls.Clear()  // Clear the previous seats
+        tableLayoutPanel1.Controls.Clear()  
         for row in 0 .. 3 do
             for col in 0 .. 8 do
                 let seat = new PictureBox()
@@ -92,13 +92,13 @@ let createForm () =
                     else
                         MessageBox.Show("Sorry, this seat is already reserved.", "Seat Information") |> ignore
                 )
-                tableLayoutPanel1.Controls.Add(seat, col, row)  // Add the seat to the table layout
+                tableLayoutPanel1.Controls.Add(seat, col, row)  
                 seats.[row, col] <- seat
 
-    updateSeats (comboBoxTime.SelectedItem.ToString())  // Initial seat setup
+    updateSeats (comboBoxTime.SelectedItem.ToString())  
 
     comboBoxTime.SelectedIndexChanged.Add(fun _ ->
-        updateSeats (comboBoxTime.SelectedItem.ToString())  // Update seats on time change
+        updateSeats (comboBoxTime.SelectedItem.ToString())  
     )
 
     let labelName = new Label()
@@ -145,7 +145,7 @@ let createForm () =
                 saveBookingToFile name time (String.Join("\n", selectedSeats)) ticketID
                 let message = sprintf "Ticket ID: %s\nName: %s\nTime: %s\nReserved Seats:\n%s" ticketID name time (String.Join("\n", selectedSeats))
                 MessageBox.Show(message, "Booking Confirmation") |> ignore
-                updateSeats time  // Refresh the seat display after booking
+                updateSeats time  
     )
     form.Controls.Add(buttonBook)
 
