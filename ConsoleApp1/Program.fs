@@ -118,6 +118,38 @@ let createForm () =
     textBoxName.Size <- Size(278, 52)
     form.Controls.Add(textBoxName)
 
+     let buttonBook = new Button()
+    buttonBook.Text <- "Book"
+    buttonBook.Font <- new Font("Segoe UI", 13.8f, FontStyle.Bold)
+    buttonBook.BackColor <- Color.Black
+    buttonBook.ForeColor <- Color.LightSeaGreen
+    buttonBook.Location <- Point(1131, 404)
+    buttonBook.Size <- Size(113, 47)
+    buttonBook.Click.Add(fun _ ->
+        if String.IsNullOrWhiteSpace(textBoxName.Text) then
+            textBoxName.BackColor <- Color.LightCoral
+        else
+            textBoxName.BackColor <- Color.SeaShell
+            let name = textBoxName.Text
+            let selectedSeats =
+                [ for row in 0 .. 3 do
+                  for col in 0 .. 8 do
+                      let seat = seats.[row, col]
+                      if seat.Image.Tag = "selected" then
+                          yield sprintf "Row: %d, Column: %d" (row+1) (col+1) ]
+            let time = comboBoxTime.SelectedItem.ToString()
+            if selectedSeats |> List.isEmpty || String.IsNullOrWhiteSpace(name) then
+                MessageBox.Show("Failed: No seats reserved.", "Booking Confirmation Failed") |> ignore
+            else
+                let ticketID = generateTicketID()
+                saveBookingToFile name time (String.Join("\n", selectedSeats)) ticketID
+                let message = sprintf "Ticket ID: %s\nName: %s\nTime: %s\nReserved Seats:\n%s" ticketID name time (String.Join("\n", selectedSeats))
+                MessageBox.Show(message, "Booking Confirmation") |> ignore
+                updateSeats time  // Refresh the seat display after booking
+    )
+    form.Controls.Add(buttonBook)
+
+
 
     
     form
