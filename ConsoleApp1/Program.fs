@@ -13,7 +13,7 @@ let readBookingFromFile time =
     if File.Exists(filePath) then
         File.ReadAllLines(filePath)
     else
-        [||]  // Return an empty array if the file does not exist
+        [||]
 
 
 let saveBookingToFile name time selectedSeats ticketID =
